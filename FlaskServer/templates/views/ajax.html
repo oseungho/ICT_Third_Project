@@ -1,0 +1,64 @@
+<!--
+index.html템플릿 파일을 상속받는다
+{#
+    {% extends '상속받을 html파일명' %}
+
+    {% block 상속받는 블락명 %}
+    새로운 내용 작성
+    {% endblock %}
+#}
+-->
+{% extends 'index.html' %}
+{% block content %}
+<div class="container" style="margin-top:50px">
+    <div class="jumbotron bg-info">
+        <h1>Flask <small>{{title}}</small></h1>
+    </div><!--jumbotron-->
+    <div class="card-deck my-5">
+        <div class="card" >
+          <img class="card-img-top" src="{{url_for('static',filename='images/woman_avatar.png')}}" alt="Card image" >
+          <div class="card-body">
+            <h4 class="card-title">John Doe</h4>
+            <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
+            <a href="#" class="btn btn-primary stretched-link">See Profile</a>
+          </div>
+        </div>
+        <div class="card" >
+          <img class="card-img-top" src="{{url_for('static',filename='images/man_avatar.png')}}" alt="Card image" >
+          <div class="card-body">
+            <h4 class="card-title">John Doe</h4>
+            <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
+            <a href="#" class="btn btn-primary stretched-link">See Profile</a>
+          </div>
+        </div>
+        <div class="card" >
+          <img class="card-img-top" src="{{url_for('static',filename='images/woman_avatar.png')}}" alt="Card image" >
+          <div class="card-body">
+            <h4 class="card-title">John Doe</h4>
+            <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
+            <a href="#" class="btn btn-primary stretched-link">See Profile</a>
+          </div>
+        </div>
+        <div class="card" >
+          <img class="card-img-top" src="{{url_for('static',filename='images/man_avatar.png')}}" alt="Card image" >
+          <div class="card-body">
+            <h4 class="card-title">John Doe</h4>
+            <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
+            <a href="#" class="btn btn-primary stretched-link">See Profile</a>
+          </div>
+        </div>
+    </div>
+    <h2>AJAX로 요청하기</h2>
+    <a href="#" class="btn btn-warning" id="ajax-request">Ajax Request</a>
+</div><!--container-->
+<script>
+    document.querySelector('#ajax-request').onclick=()=>{
+        const json={institute:'한소인',curriculumn:'AI & Back-end/Front-end'};
+        fetch('/ajax',{method:'POST',body:JSON.stringify(json),headers:{'content-type':'application/json'}})
+        .then(response=>response.json())
+        .then(data=>{console.log(data);console.log(data.loc)});
+    };
+</script>
+{% endblock %}
+
+
